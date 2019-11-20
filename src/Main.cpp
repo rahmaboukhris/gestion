@@ -11,15 +11,10 @@
 #include <iostream>
 #include "Adresse.h"
 #include "Personne.h"
-
-#define MAP 0
-// Define a log function witch exists only if MAP == 1
-#if MAP == 1
-#define LOG(x) std::cout << x << std::endl
-#else
-#define LOG(x)	
-#endif
-
+#include "Salarie.h"
+#include "Commercial.h"
+#include "Directeur.h"
+#include "Log.h"
 
 void testAdresse()
 {
@@ -109,14 +104,15 @@ void testPersonne()
 	  p2.Afficher();
 
 }
-/*
+
+
 
 void testSalarie()
 {
+
 	  // liste du personnel simplifiee allouée a la compilation
 	  // sous forme d'un tableau de pointeurs sur Personne
 	  Personne * personnel[10];
-	  int nbPersonnes = 0;
 
 	  auto *pt1= new Personne("Dupont");
 	  pt1->Epouser("LENORMAND");
@@ -128,47 +124,54 @@ void testSalarie()
 
 	  std::cout << "tests de la classe Salarie"<<std::endl;
 	  std::cout << "test du constructeur I :"<<std::endl;
-	  auto *pt2= new Salarie("RICH", 1,1,1970, 1000.0 );
-	  pt2->Augmenter(15000.);
+	  auto pt2= new Salarie("RICH", 1,1,1970, 1000.0 ); // date de naissance ou embauche ?:)
+	  pt2->Augmenter(15000.0);
+	
 	  personnel[2]=pt2;
 	  Salarie p2("PLUSRICH", 1,1, 1990, 2000.0);
+	  
 	  personnel[3]=&p2;
-	  nbPersonnes = 4;
+	  const int nbPersonnes = 4;
 	  std::cout << "*****liste du personnel de l'entreprise : "<< std::endl;
-	  for ( int i=0;i<nbPersonnes;i++)
-	  		personnel[i]->Afficher();
+	
+	  for ( int i=0;i<nbPersonnes;i++) {
+	  		std::cout << *personnel[i];
+	  }
 	  std::cout << "*****fin de liste du personnel de l'entreprise"<<std::endl;
 	  delete pt1;
 	  delete pt2;
 
 	  std::cout<<"***** c'est fini "	<<std::endl;
+	  
 }
 
 void testCommercial() {
 	std::cout << "Test Commercial *********************************" << std::endl;
 	
-	auto* commercial1 = new Commercial(5000, 8000);
+	auto commercial = new Commercial(5000, 8000);
 
-	commercial1->Afficher();
+	std::cout << *commercial << std::endl;
+	commercial->MajVent(4e3);
+	std::cout << *commercial << std::endl;
 
-	commercial1->MajVent(4000.);
-	commercial1->Afficher();
-
-	delete commercial1;
+	delete commercial;
 }
 
 void testDirecteur() {
 	std::cout << "Test Directeur *********************************" << std::endl;
-	auto* directeur = new Directeur(50, "Marketing");
-	directeur->Afficher();
+	auto directeur = new Directeur(50, "Marketing");
+	std::cout << *directeur;
 	delete directeur;
 }
-*/
+
 
 int main() {
 	LOG("Hello world"); // print nothing when MAP (like your project) is 0
-	// testDate(); OK
-	// testAdresse(); OK
-	testPersonne(); // OK
+	// testDate(); //OK
+	 //testAdresse(); //OK
+	//testPersonne(); // OK
+	//testSalarie();  // OK
+	//testCommercial(); // OK
+	testDirecteur();
 	return 0;
 }

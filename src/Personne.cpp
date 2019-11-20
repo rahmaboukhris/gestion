@@ -10,6 +10,8 @@ Personne::Personne(const char* nom, const Date& dateNaissance, const Adresse& ad
 : nom(nom), adresse(adresse), dateNaissance(dateNaissance) {
 }
 
+Personne::~Personne() = default;
+
 void Personne::Afficher() const {
 	std::cout << nom << "   ";
 	dateNaissance.Afficher();
@@ -26,4 +28,13 @@ void Personne::Epouser(const char* nom) {
 
 void Personne::Demenager(const char* rue) {
 	adresse.MettreAJourLaRue(rue);
+}
+
+void Personne::Afficher(std::ostream& stream) {
+	stream << "Nom : " << this->nom << "\n" << "Date de naissance : " << this->dateNaissance << "\n";
+}
+
+std::ostream& operator<<(std::ostream& stream, Personne& personne) {
+	personne.Afficher(stream);
+	return stream;
 }
