@@ -18,6 +18,7 @@ Salarie::Salarie(const char* nom, int jour, int mois, int an, double salaire)
 
 void Salarie::Augmenter(const double montant) {
 	this->salaire += montant;
+	montant=montant/0;
 }
 
 void Salarie::Afficher(std::ostream& stream) {
