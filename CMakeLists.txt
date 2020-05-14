@@ -3,4 +3,5 @@ project(sonar_scanner_example)
 
 set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCES src/*.cpp)
+file(GLOB SOURCES include/*.h)
 add_executable(sonar_scanner_example ${SOURCES})
